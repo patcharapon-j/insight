@@ -166,3 +166,13 @@ export function playSound(stage, themeId) {
   const volume = game.settings.get("insight", "soundVolume");
   fn(ctx, volume);
 }
+
+/**
+ * Play a custom sound file using FoundryVTT's audio API.
+ * @param {string} src - Path to the audio file
+ */
+export function playCustomSound(src) {
+  if (!game.settings.get("insight", "soundEnabled")) return;
+  const volume = game.settings.get("insight", "soundVolume");
+  foundry.audio.AudioHelper.play({ src, volume, loop: false }, false);
+}

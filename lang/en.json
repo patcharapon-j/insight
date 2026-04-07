@@ -27,6 +27,8 @@
   "INSIGHT.ComposeBodyHint": "The message content. Supports <b>bold</b> and <i>italic</i>.",
   "INSIGHT.ComposeImage": "Image",
   "INSIGHT.ComposeImageHint": "Optional image URL.",
+  "INSIGHT.SettingSoundFile": "Custom Sound Effect",
+  "INSIGHT.SettingSoundFileHint": "Optional audio file to play instead of the default procedural sound. Leave blank to use the built-in sound.",
   "INSIGHT.ComposeSend": "Send",
   "INSIGHT.ComposeSent": "Sent!",
 

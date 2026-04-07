@@ -34,6 +34,16 @@ export function registerSettings() {
     range: { min: 0, max: 1, step: 0.1 },
   });
 
+  game.settings.register("insight", "soundFile", {
+    name: "INSIGHT.SettingSoundFile",
+    hint: "INSIGHT.SettingSoundFileHint",
+    scope: "world",
+    config: true,
+    type: String,
+    default: "",
+    filePicker: "audio",
+  });
+
   game.settings.register("insight", "animationSpeed", {
     name: "INSIGHT.SettingAnimationSpeed",
     hint: "INSIGHT.SettingAnimationSpeedHint",

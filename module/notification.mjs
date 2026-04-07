@@ -1,7 +1,7 @@
 // module/notification.mjs — Notification renderer and animation lifecycle
 
 import { applyTheme } from "./themes.mjs";
-import { playSound } from "./sound.mjs";
+import { playSound, playCustomSound } from "./sound.mjs";
 
 /**
  * Timing presets for animation stages (milliseconds).
@@ -80,18 +80,25 @@ export async function renderNotification(data, onDismiss) {
     el.querySelector(".insight-dismiss"),
   ].filter(Boolean);
 
+  // Check for custom sound file in settings
+  const customSound = game.settings.get("insight", "soundFile");
+
   // Stage 1: Line slides in + container becomes visible
   setTimeout(() => {
     el.classList.add("insight-visible");
     line.classList.add("insight-visible");
-    playSound("line", data.theme);
+    if (customSound) {
+      playCustomSound(customSound);
+    } else {
+      playSound("line", data.theme);
+    }
   }, timing.line);
 
   // Stage 2: Card expands + back panel begins glitch
   setTimeout(() => {
     card.classList.add("insight-visible");
     bgBack.classList.add("insight-glitch");
-    playSound("reveal", data.theme);
+    if (!customSound) playSound("reveal", data.theme);
   }, timing.card);
 
   // Stage 3: Content fades in with stagger

@@ -39,7 +39,6 @@ export class InsightComposeDialog extends HandlebarsApplicationMixin(Application
     context.title = this._lastTitle ?? "";
     context.body = this._lastBody ?? "";
     context.image = this._lastImage ?? "";
-
     return context;
   }
 
@@ -69,24 +68,7 @@ export class InsightComposeDialog extends HandlebarsApplicationMixin(Application
       image: formData.get("image")?.trim() || null,
     });
 
-    // Remember values for next send
-    this._lastSense = formData.get("sense")?.trim() || "";
-    this._lastImage = formData.get("image")?.trim() || "";
-    this._lastTitle = "";
-    this._lastBody = "";
-
-    // Flash the button green briefly
-    const btn = target;
-    btn.classList.add("insight-sent");
-    btn.textContent = game.i18n.localize("INSIGHT.ComposeSent");
-    setTimeout(() => {
-      btn.classList.remove("insight-sent");
-      btn.textContent = game.i18n.localize("INSIGHT.ComposeSend");
-    }, 1200);
-
-    // Clear title and body for next notification
-    form.querySelector('[name="title"]').value = "";
-    form.querySelector('[name="body"]').value = "";
+    this.close();
   }
 
   /**
@@ -104,4 +86,5 @@ export class InsightComposeDialog extends HandlebarsApplicationMixin(Application
     });
     fp.browse();
   }
+
 }

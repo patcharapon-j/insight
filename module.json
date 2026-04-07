@@ -2,14 +2,14 @@
   "id": "insight",
   "title": "Gluniverse Insight — Passive Notifications",
   "description": "Deliver passive perception, secret checks, and narrative reveals to individual players with cinematic notifications.",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "compatibility": {
-    "minimum": "12",
+    "minimum": "13",
     "verified": "13"
   },
   "authors": [
     {
-      "name": "Gluniverse"
+      "name": "Patcharapon Joksamut"
     }
   ],
   "esmodules": ["insight.mjs"],
@@ -21,5 +21,12 @@
       "path": "lang/en.json"
     }
   ],
-  "socket": true
+  "socket": true,
+  "url": "https://github.com/patcharapon-j/insight",
+  "manifest": "https://github.com/patcharapon-j/insight/releases/latest/download/module.json",
+  "download": "https://github.com/patcharapon-j/insight/releases/latest/download/module.zip",
+  "bugs": "https://github.com/patcharapon-j/insight/issues",
+  "changelog": "https://github.com/patcharapon-j/insight/blob/main/CHANGELOG.md",
+  "readme": "https://github.com/patcharapon-j/insight/blob/main/README.md",
+  "license": "MIT"
 }

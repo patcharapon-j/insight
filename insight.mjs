@@ -20,17 +20,19 @@ Hooks.once("ready", () => {
 Hooks.on("getSceneControlButtons", (controls) => {
   if (!game.user.isGM) return;
 
-  const tokenControls = controls.find(c => c.name === "token");
+  const tokenControls = controls.tokens;
   if (!tokenControls) return;
 
-  tokenControls.tools.push({
+  tokenControls.tools.insight = {
     name: "insight",
     title: "INSIGHT.SceneControl",
     icon: "fas fa-eye",
+    order: Object.keys(tokenControls.tools).length,
     button: true,
-    onClick: () => {
+    visible: true,
+    onChange: () => {
       if (!composeDialog) composeDialog = new InsightComposeDialog();
       composeDialog.render(true);
     },
-  });
+  };
 });
