@@ -1,0 +1,52 @@
+// module/settings.mjs — Module settings registration
+
+export function registerSettings() {
+
+  game.settings.register("insight", "theme", {
+    name: "INSIGHT.SettingTheme",
+    hint: "INSIGHT.SettingThemeHint",
+    scope: "world",
+    config: true,
+    type: String,
+    default: "dreadlight",
+    choices: {
+      dreadlight: "INSIGHT.ThemeDreadlight",
+      fantasy: "INSIGHT.ThemeFantasy",
+    },
+  });
+
+  game.settings.register("insight", "soundEnabled", {
+    name: "INSIGHT.SettingSoundEnabled",
+    hint: "INSIGHT.SettingSoundEnabledHint",
+    scope: "client",
+    config: true,
+    type: Boolean,
+    default: true,
+  });
+
+  game.settings.register("insight", "soundVolume", {
+    name: "INSIGHT.SettingSoundVolume",
+    hint: "INSIGHT.SettingSoundVolumeHint",
+    scope: "client",
+    config: true,
+    type: Number,
+    default: 0.5,
+    range: { min: 0, max: 1, step: 0.1 },
+  });
+
+  game.settings.register("insight", "animationSpeed", {
+    name: "INSIGHT.SettingAnimationSpeed",
+    hint: "INSIGHT.SettingAnimationSpeedHint",
+    scope: "client",
+    config: true,
+    type: String,
+    default: "normal",
+    choices: {
+      normal: "INSIGHT.AnimationNormal",
+      fast: "INSIGHT.AnimationFast",
+      instant: "INSIGHT.AnimationInstant",
+    },
+  });
+
+  console.log("Insight | Settings registered");
+}
