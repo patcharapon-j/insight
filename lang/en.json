@@ -1,0 +1,35 @@
+{
+  "INSIGHT.ModuleTitle": "Insight",
+
+  "INSIGHT.SettingTheme": "Notification Theme",
+  "INSIGHT.SettingThemeHint": "Visual theme for Insight notifications.",
+  "INSIGHT.ThemeDreadlight": "Dreadlight",
+  "INSIGHT.ThemeFantasy": "Fantasy",
+
+  "INSIGHT.SettingSoundEnabled": "Enable Sounds",
+  "INSIGHT.SettingSoundEnabledHint": "Play sounds when notifications appear.",
+  "INSIGHT.SettingSoundVolume": "Sound Volume",
+  "INSIGHT.SettingSoundVolumeHint": "Volume level for notification sounds.",
+  "INSIGHT.SettingAnimationSpeed": "Animation Speed",
+  "INSIGHT.SettingAnimationSpeedHint": "Speed of notification animations.",
+  "INSIGHT.AnimationNormal": "Normal",
+  "INSIGHT.AnimationFast": "Fast",
+  "INSIGHT.AnimationInstant": "Instant",
+
+  "INSIGHT.ComposeTitle": "Send Insight",
+  "INSIGHT.ComposeTarget": "Target Player",
+  "INSIGHT.ComposeTargetHint": "Select which player receives this notification.",
+  "INSIGHT.ComposeSense": "Sense Label",
+  "INSIGHT.ComposeSenseHint": "Optional label (e.g., Perception, Insight).",
+  "INSIGHT.ComposeNotifTitle": "Title",
+  "INSIGHT.ComposeTitleHint": "Short title for the notification.",
+  "INSIGHT.ComposeBody": "Body",
+  "INSIGHT.ComposeBodyHint": "The message content. Supports <b>bold</b> and <i>italic</i>.",
+  "INSIGHT.ComposeImage": "Image",
+  "INSIGHT.ComposeImageHint": "Optional image URL.",
+  "INSIGHT.ComposeSend": "Send",
+  "INSIGHT.ComposeSent": "Sent!",
+
+  "INSIGHT.Dismiss": "Dismiss",
+  "INSIGHT.SceneControl": "Send Insight"
+}
