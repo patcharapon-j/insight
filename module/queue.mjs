@@ -37,6 +37,10 @@ function next() {
   renderNotification(data, () => {
     // Small delay between dismiss and next notification
     setTimeout(next, 300);
+  }).catch(err => {
+    console.error("Insight | Notification render failed:", err);
+    active = false;
+    next();
   });
 }
 

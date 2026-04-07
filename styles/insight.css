@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IM+Fell+English:ital@0;1&display=swap');
+
 /* ============================================================
    INSIGHT — Passive Notification Module
    Fracture design with CSS custom property theming
@@ -27,8 +29,6 @@
   font-weight: 400;
   font-display: swap;
 }
-
-@import url('https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IM+Fell+English:ital@0;1&display=swap');
 
 /* ----------------------------------------------------------
    NOTIFICATION CONTAINER
