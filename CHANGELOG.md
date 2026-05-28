@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.1.0 (2026-05-28)
+
+### Compatibility
+- Verified against Foundry VTT v14 (`compatibility.verified` bumped to `14`)
+- Replaced deprecated global `renderTemplate` with `foundry.applications.handlebars.renderTemplate`
+- Replaced deprecated global `FilePicker` with `foundry.applications.apps.FilePicker` (via `.implementation` when available)
+- Compose dialog now reuses any existing instance via `foundry.applications.instances` instead of a module-level cache
+
 ## 1.0.0 (2026-04-07)
 
 ### Features

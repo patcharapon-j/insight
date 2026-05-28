@@ -44,9 +44,9 @@ const TIMINGS = {
  * @returns {HTMLElement} The notification container element
  */
 export async function renderNotification(data, onDismiss) {
-  // Load and render template
+  // Load and render template (v13+ namespaced; global renderTemplate is deprecated in v14)
   const templatePath = "modules/insight/templates/notification.hbs";
-  const html = await renderTemplate(templatePath, data);
+  const html = await foundry.applications.handlebars.renderTemplate(templatePath, data);
 
   // Create container and insert into DOM
   const wrapper = document.createElement("div");
