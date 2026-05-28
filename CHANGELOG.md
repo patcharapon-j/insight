@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.2.0 (2026-05-28)
+
+### Features
+- Compose dialog target list now includes other connected GMs (excluded self), so a GM can whisper to a co-GM or a GM-assistant. Other GMs are labeled `(GM)` and grouped after regular players.
+
 ## 1.1.0 (2026-05-28)
 
 ### Compatibility
