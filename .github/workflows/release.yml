@@ -1,0 +1,108 @@
+name: Release
+
+# Manual trigger from the Actions tab. Pick how to bump the version (patch / minor / major).
+# This workflow will:
+#   1. Read the current version from module.json
+#   2. Bump it according to the chosen input
+#   3. Commit the bumped module.json back to the source branch and tag it
+#   4. Build module.zip with all runtime files
+#   5. Publish a GitHub Release with module.json + module.zip attached so the
+#      manifest install URL in module.json (releases/latest/download/...) keeps working.
+
+on:
+  workflow_dispatch:
+    inputs:
+      bump:
+        description: "Version bump"
+        required: true
+        default: patch
+        type: choice
+        options:
+          - patch
+          - minor
+          - major
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Compute next version
+        id: ver
+        run: |
+          set -euo pipefail
+          current=$(jq -r .version module.json)
+          if ! [[ "$current" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            echo "Current version '$current' is not semver (X.Y.Z); aborting." >&2
+            exit 1
+          fi
+          IFS=. read -r major minor patch <<< "$current"
+          case "${{ inputs.bump }}" in
+            major) major=$((major + 1)); minor=0; patch=0 ;;
+            minor) minor=$((minor + 1)); patch=0 ;;
+            patch) patch=$((patch + 1)) ;;
+            *) echo "Unknown bump type"; exit 1 ;;
+          esac
+          new="${major}.${minor}.${patch}"
+          echo "current=$current" >> "$GITHUB_OUTPUT"
+          echo "new=$new" >> "$GITHUB_OUTPUT"
+          echo "tag=v$new" >> "$GITHUB_OUTPUT"
+          echo "Bumping $current -> $new (${{ inputs.bump }})"
+
+      - name: Update module.json version
+        run: |
+          set -euo pipefail
+          jq --arg v "${{ steps.ver.outputs.new }}" '.version = $v' module.json > module.json.tmp
+          mv module.json.tmp module.json
+
+      - name: Build module.zip
+        run: |
+          set -euo pipefail
+          zip -r module.zip \
+            module.json \
+            insight.mjs \
+            module \
+            templates \
+            styles \
+            lang \
+            LICENSE \
+            README.md \
+            CHANGELOG.md \
+            -x "*.DS_Store" "*Thumbs.db"
+
+      - name: Commit version bump and tag
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add module.json
+          git commit -m "chore(release): ${{ steps.ver.outputs.tag }}"
+          git tag "${{ steps.ver.outputs.tag }}"
+          git push origin "HEAD:${{ github.ref_name }}"
+          git push origin "${{ steps.ver.outputs.tag }}"
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.ver.outputs.tag }}
+          name: ${{ steps.ver.outputs.tag }}
+          body: |
+            Released `${{ steps.ver.outputs.tag }}` from `${{ github.ref_name }}` (bump: `${{ inputs.bump }}`).
+
+            ## Install / Update
+            Use this manifest URL inside Foundry's Module Management → Install Module:
+            ```
+            https://github.com/${{ github.repository }}/releases/latest/download/module.json
+            ```
+          files: |
+            module.json
+            module.zip
+          fail_on_unmatched_files: true
