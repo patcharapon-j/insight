@@ -29,10 +29,21 @@ export class InsightComposeDialog extends HandlebarsApplicationMixin(Application
   async _prepareContext(options) {
     const context = await super._prepareContext(options);
 
-    // Get connected non-GM players
+    // Get connected recipients: all non-self users.
+    // Players appear first, then other GMs (so a GM can whisper to a player
+    // who is also serving as a co-GM or GM assistant).
+    const gmSuffix = ` ${game.i18n.localize("INSIGHT.ComposeTargetGMSuffix")}`;
     context.players = game.users
-      .filter(u => !u.isGM && u.active)
-      .map(u => ({ id: u.id, name: u.name }));
+      .filter(u => u.active && u.id !== game.user.id)
+      .map(u => ({
+        id: u.id,
+        name: u.isGM ? `${u.name}${gmSuffix}` : u.name,
+        isGM: u.isGM,
+      }))
+      .sort((a, b) => {
+        if (a.isGM !== b.isGM) return a.isGM ? 1 : -1;
+        return a.name.localeCompare(b.name);
+      });
 
     // Preserve form values between re-renders
     context.sense = this._lastSense ?? "";

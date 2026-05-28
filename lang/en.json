@@ -17,8 +17,9 @@
   "INSIGHT.AnimationInstant": "Instant",
 
   "INSIGHT.ComposeTitle": "Send Insight",
-  "INSIGHT.ComposeTarget": "Target Player",
-  "INSIGHT.ComposeTargetHint": "Select which player receives this notification.",
+  "INSIGHT.ComposeTarget": "Target Recipient",
+  "INSIGHT.ComposeTargetHint": "Select which user receives this notification. Other GMs are included so you can whisper to a co-GM or GM assistant.",
+  "INSIGHT.ComposeTargetGMSuffix": "(GM)",
   "INSIGHT.ComposeSense": "Sense Label",
   "INSIGHT.ComposeSenseHint": "Optional label (e.g., Perception, Insight).",
   "INSIGHT.ComposeNotifTitle": "Title",
