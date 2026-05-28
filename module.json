@@ -2,7 +2,7 @@
   "id": "insight",
   "title": "Gluniverse Insight — Passive Notifications",
   "description": "Deliver passive perception, secret checks, and narrative reveals to individual players with cinematic notifications.",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "compatibility": {
     "minimum": "13",
     "verified": "14"
@@ -12,8 +12,12 @@
       "name": "Patcharapon Joksamut"
     }
   ],
-  "esmodules": ["insight.mjs"],
-  "styles": ["styles/insight.css"],
+  "esmodules": [
+    "insight.mjs"
+  ],
+  "styles": [
+    "styles/insight.css"
+  ],
   "languages": [
     {
       "lang": "en",
