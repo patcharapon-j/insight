@@ -77,7 +77,9 @@ export class InsightComposeDialog extends HandlebarsApplicationMixin(Application
    * @param {HTMLElement} target
    */
   static async #onBrowseImage(event, target) {
-    const fp = new FilePicker({
+    const FilePickerImpl = foundry.applications.apps.FilePicker.implementation
+      ?? foundry.applications.apps.FilePicker;
+    const fp = new FilePickerImpl({
       type: "image",
       callback: (path) => {
         const input = this.element.querySelector('[name="image"]');

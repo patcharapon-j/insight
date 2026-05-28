@@ -1,6 +1,6 @@
 # Gluniverse Insight — Passive Notifications
 
-A FoundryVTT v13 module for delivering cinematic, private notifications to individual players. Perfect for passive perception results, secret insight checks, and narrative reveals that only one player should see.
+A FoundryVTT v13/v14 module for delivering cinematic, private notifications to individual players. Perfect for passive perception results, secret insight checks, and narrative reveals that only one player should see.
 
 ## Features
 
@@ -54,7 +54,7 @@ Notifications appear on the right side of the screen with a cinematic animation.
 
 ## Compatibility
 
-- **Foundry VTT**: v13+
+- **Foundry VTT**: v13+ (verified through v14)
 - **Systems**: System-agnostic, works with any game system
 
 ## License

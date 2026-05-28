@@ -3,8 +3,7 @@ import { registerSettings } from "./module/settings.mjs";
 import { registerSocket } from "./module/socket.mjs";
 import { InsightComposeDialog } from "./module/compose-dialog.mjs";
 
-/** @type {InsightComposeDialog|null} */
-let composeDialog = null;
+const COMPOSE_DIALOG_ID = "insight-compose-dialog";
 
 Hooks.once("init", () => {
   console.log("Insight | Initializing module");
@@ -31,8 +30,9 @@ Hooks.on("getSceneControlButtons", (controls) => {
     button: true,
     visible: true,
     onChange: () => {
-      if (!composeDialog) composeDialog = new InsightComposeDialog();
-      composeDialog.render(true);
+      const existing = foundry.applications.instances.get(COMPOSE_DIALOG_ID);
+      if (existing) existing.render({ force: true });
+      else new InsightComposeDialog().render({ force: true });
     },
   };
 });
