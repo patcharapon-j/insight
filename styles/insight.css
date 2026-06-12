@@ -664,33 +664,6 @@
   100% { transform: translateX(100%); opacity: 0; }
 }
 
-/* Image row — well + notched browse chip */
-.insight-image-row {
-  display: flex;
-  gap: 8px;
-  align-items: stretch;
-}
-.insight-image-row input { flex: 1; }
-
-.insight-image-row button {
-  background: var(--gl-ink-2);
-  border: 1px solid var(--gl-edge);
-  border-radius: 0;
-  clip-path: polygon(6px 0, 100% 0, 100% 100%, 0 100%, 0 6px);
-  color: var(--gl-text-dim);
-  padding: 0 12px;
-  cursor: pointer;
-  font-size: 13px;
-  flex-shrink: 0;
-  transition: color var(--gl-d-quick) var(--gl-ease),
-              border-color var(--gl-d-quick) var(--gl-ease);
-}
-
-.insight-image-row button:hover {
-  color: var(--gl-accent);
-  border-color: color-mix(in srgb, var(--gl-accent) 45%, transparent);
-}
-
 @media (prefers-reduced-motion: reduce) {
   .insight-send-btn.insight-sent::after { animation: none; }
 }

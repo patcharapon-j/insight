@@ -2,6 +2,9 @@
 
 ## 1.3.0 (2026-06-12)
 
+### Changed
+- **Streamlined the compose dialog for play.** The GM now just picks a recipient and types a single message — the separate sense, title, and image fields are gone. The message field autofocuses, the last recipient stays selected for rapid follow-ups, and **Ctrl/Cmd+Enter** sends. (The notification renderer still supports titles, sense labels, and images for programmatic sends.)
+
 ### Design
 - Adopted the GL Universe **"Etched Glass"** design language across the whole module — liquid glass material with an Endfield-style drafting layer.
 - **Notification card** rebuilt as a chamfered glass panel: frosted `backdrop-filter` blur with inner light catch and bloom, a 1px accent rim tracing the cut corner, an L-bracket registration mark, crop marks, a `GLU·INSIGHT // ####` serial, a triangle bullet, and a barcode data strip.

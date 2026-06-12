@@ -7,34 +7,15 @@
     {{localize "INSIGHT.ComposeTarget"}}
     <select name="target">
       {{#each players}}
-      <option value="{{this.id}}">{{this.name}}</option>
+      <option value="{{this.id}}" {{#if this.selected}}selected{{/if}}>{{this.name}}</option>
       {{/each}}
     </select>
   </label>
 
   <label>
-    {{localize "INSIGHT.ComposeSense"}}
-    <input type="text" name="sense" placeholder="Perception, Insight, Keen Senses..." value="{{sense}}">
-    <span class="hint">{{localize "INSIGHT.ComposeSenseHint"}}</span>
-  </label>
-
-  <label>
-    {{localize "INSIGHT.ComposeNotifTitle"}}
-    <input type="text" name="title" placeholder="A Faint Presence..." value="{{title}}" required>
-  </label>
-
-  <label>
-    {{localize "INSIGHT.ComposeBody"}}
-    <textarea name="body" placeholder="The hairs on your neck rise..." required>{{body}}</textarea>
-    <span class="hint">{{localize "INSIGHT.ComposeBodyHint"}}</span>
-  </label>
-
-  <label>
-    {{localize "INSIGHT.ComposeImage"}}
-    <div class="insight-image-row">
-      <input type="text" name="image" placeholder="Optional image path..." value="{{image}}">
-      <button type="button" data-action="browse-image"><i class="fas fa-file-image"></i></button>
-    </div>
+    {{localize "INSIGHT.ComposeMessage"}}
+    <textarea name="message" placeholder="The hairs on your neck rise..." required>{{message}}</textarea>
+    <span class="hint">{{localize "INSIGHT.ComposeMessageHint"}}</span>
   </label>
 
   <button type="button" class="insight-send-btn" data-action="send">
