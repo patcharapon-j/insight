@@ -2,7 +2,7 @@
   "id": "insight",
   "title": "Gluniverse Insight — Passive Notifications",
   "description": "Deliver passive perception, secret checks, and narrative reveals to individual players with cinematic notifications.",
-  "version": "1.3.1",
+  "version": "1.3.2",
   "compatibility": {
     "minimum": "13",
     "verified": "14"
