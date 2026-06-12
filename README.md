@@ -5,12 +5,13 @@ A FoundryVTT v13/v14 module for delivering cinematic, private notifications to i
 ## Features
 
 - **GM Compose Dialog** — Send targeted notifications to individual players from the token controls toolbar
-- **Cinematic Fracture Animation** — Three-stage reveal: fracture line, card expansion, staggered content fade-in
-- **Two Visual Themes** — Dreadlight (dark horror) and Fantasy (warm arcane), applied via CSS custom properties
+- **"Etched Glass" Design Language** — GL Universe theming: chamfered frosted-glass panels with an L-bracket, crop marks, a serial designator, and a barcode data strip etched on top like a technical drawing
+- **Cinematic Reveal** — A precision rule of light draws in, a sheen sweeps the panel, and content lights in a diagonal cascade stagger
+- **Two Visual Themes** — Dreadlight (mystery violet) and Fantasy (signal amber), driven by a single dynamic accent channel (`--gl-accent`)
 - **Procedural Sound** — Web Audio API-generated atmospheric sounds per theme, or use a custom sound file
 - **Notification Queue** — Multiple notifications display one at a time, queued in order
 - **Rich Content** — Supports sense labels, titles, body text with bold/italic formatting, and optional images
-- **Animation Speed Control** — Normal, Fast, or Instant animation presets (per-client setting)
+- **Motion Tiers** — Normal, Fast, or Instant presets (per-client), with a full `prefers-reduced-motion` clamp
 
 ## Installation
 

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Insight — Etched Glass specimen</title>
+<!-- Uses the real module stylesheet so the specimen never drifts. -->
+<link rel="stylesheet" href="../styles/insight.css">
+<style>
+  body {
+    margin: 0;
+    min-height: 100vh;
+    background:
+      radial-gradient(60% 80% at 70% 20%, #10202c, transparent 60%),
+      radial-gradient(50% 60% at 20% 80%, #170f22, transparent 60%),
+      #02070b;
+    font-family: system-ui, sans-serif;
+    color: #98a2b6;
+    display: flex;
+    gap: 56px;
+    align-items: center;
+    justify-content: center;
+    padding: 60px;
+    box-sizing: border-box;
+    flex-wrap: wrap;
+  }
+  /* faint blueprint grid (§4.6) behind the specimen */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
+    background-size: 28px 28px;
+    pointer-events: none;
+  }
+  .specimen { position: relative; }
+  .specimen h2 {
+    font-family: "Bahnschrift", "Share Tech Mono", monospace;
+    font-size: 9px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: #98a2b6;
+    margin: 0 0 18px;
+  }
+  /* Pin the notification specimen inline (the real one is position:fixed). */
+  .specimen .insight-notification {
+    position: relative;
+    right: auto;
+    top: auto;
+    transform: none;
+  }
+  /* Render the compose form as a standalone glass card for the specimen. */
+  .compose-card {
+    width: 360px;
+    border: 1px solid var(--gl-edge, rgba(255,255,255,.13));
+    background:
+      linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,0) 30%),
+      linear-gradient(98deg, color-mix(in srgb, #ffd24a 10%, #080b11), #080b11 70%);
+  }
+  .compose-card .insight-compose-kicker { padding-top: 14px; }
+</style>
+</head>
+<body>
+
+  <div class="specimen">
+    <h2>// Notification &middot; Dreadlight</h2>
+    <div class="insight-notification insight-visible" style="--gl-accent:#b497ff">
+      <span class="gl-crop gl-crop-tl"></span>
+      <span class="gl-crop gl-crop-tr"></span>
+      <span class="gl-crop gl-crop-bl"></span>
+      <span class="gl-crop gl-crop-br"></span>
+      <div class="insight-fracture-line insight-visible"></div>
+      <div class="insight-fracture-card insight-visible">
+        <div class="insight-fracture-bg-back"></div>
+        <div class="insight-fracture-bg-front">
+          <span class="insight-bracket"></span>
+          <div class="insight-sheen"></div>
+          <div class="insight-fracture-inner">
+            <div class="insight-label-row">
+              <div class="insight-icon insight-fade-in">&#x25B2;</div>
+              <div class="insight-sense insight-fade-in">Keen Senses</div>
+              <div class="insight-serial insight-fade-in">GLU&middot;INSIGHT // 0042</div>
+            </div>
+            <div class="insight-title insight-fade-in">A Faint Presence&hellip;</div>
+            <div class="insight-divider insight-fade-in"></div>
+            <div class="insight-body insight-fade-in">The hairs on your neck rise. Something <b>watches</b> from the dark beyond the torchlight &mdash; <i>patient, and very close.</i></div>
+            <div class="insight-datastrip insight-fade-in"></div>
+          </div>
+          <button class="insight-dismiss insight-fade-in">&#x2715; Dismiss</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="specimen">
+    <h2>// Notification &middot; Fantasy</h2>
+    <div class="insight-notification insight-visible" style="--gl-accent:#ffd24a;--insight-body-style:italic">
+      <span class="gl-crop gl-crop-tl"></span>
+      <span class="gl-crop gl-crop-tr"></span>
+      <span class="gl-crop gl-crop-bl"></span>
+      <span class="gl-crop gl-crop-br"></span>
+      <div class="insight-fracture-line insight-visible"></div>
+      <div class="insight-fracture-card insight-visible">
+        <div class="insight-fracture-bg-back"></div>
+        <div class="insight-fracture-bg-front">
+          <span class="insight-bracket"></span>
+          <div class="insight-sheen"></div>
+          <div class="insight-fracture-inner">
+            <div class="insight-label-row">
+              <div class="insight-icon insight-fade-in">&#x25B2;</div>
+              <div class="insight-sense insight-fade-in">Arcane Insight</div>
+              <div class="insight-serial insight-fade-in">GLU&middot;INSIGHT // 0A7F</div>
+            </div>
+            <div class="insight-title insight-fade-in">The Ward Flickers</div>
+            <div class="insight-divider insight-fade-in"></div>
+            <div class="insight-body insight-fade-in">A sigil along the archway pulses once &mdash; <b>old magic</b>, half-spent, keyed to a name you almost remember.</div>
+            <div class="insight-datastrip insight-fade-in"></div>
+          </div>
+          <button class="insight-dismiss insight-fade-in">&#x2715; Dismiss</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="specimen">
+    <h2>// Compose dialog</h2>
+    <div class="insight-compose compose-card" style="--gl-accent:#b497ff">
+      <div class="insight-compose-kicker">
+        Gluniverse Insight
+        <span class="insight-compose-serial">SEC&middot;04 / GRID&middot;NW</span>
+      </div>
+      <form class="insight-compose-form" autocomplete="off" onsubmit="return false">
+        <label>Target Recipient
+          <select><option>Mara Vex</option><option>Co-GM (GM)</option></select>
+        </label>
+        <label>Sense Label
+          <input type="text" placeholder="Perception, Insight, Keen Senses&hellip;" value="Keen Senses">
+          <span class="hint">Optional label (e.g., Perception, Insight).</span>
+        </label>
+        <label>Title
+          <input type="text" placeholder="A Faint Presence&hellip;" value="A Faint Presence&hellip;">
+        </label>
+        <label>Body
+          <textarea placeholder="The hairs on your neck rise&hellip;">The hairs on your neck rise.</textarea>
+        </label>
+        <label>Image
+          <div class="insight-image-row">
+            <input type="text" placeholder="Optional image path&hellip;">
+            <button type="button">&#x1F5BC;</button>
+          </div>
+        </label>
+        <button type="button" class="insight-send-btn">Send</button>
+      </form>
+    </div>
+  </div>
+
+</body>
+</html>

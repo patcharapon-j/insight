@@ -79,7 +79,15 @@ export class InsightComposeDialog extends HandlebarsApplicationMixin(Application
       image: formData.get("image")?.trim() || null,
     });
 
-    this.close();
+    // Signal flash on commit (§6.2), then close once the sweep has read.
+    const reduced = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+    if (target && !reduced) {
+      target.classList.add("insight-sent");
+      target.textContent = game.i18n.localize("INSIGHT.ComposeSent");
+      setTimeout(() => this.close(), 420);
+    } else {
+      this.close();
+    }
   }
 
   /**

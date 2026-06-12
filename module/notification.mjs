@@ -44,9 +44,16 @@ const TIMINGS = {
  * @returns {HTMLElement} The notification container element
  */
 export async function renderNotification(data, onDismiss) {
+  // Derive an Etched-Glass serial designator (§4.2) from the notification id.
+  const serial = String(data.id ?? "")
+    .replace(/[^a-z0-9]/gi, "")
+    .slice(-4)
+    .toUpperCase()
+    .padStart(4, "0");
+
   // Load and render template (v13+ namespaced; global renderTemplate is deprecated in v14)
   const templatePath = "modules/insight/templates/notification.hbs";
-  const html = await foundry.applications.handlebars.renderTemplate(templatePath, data);
+  const html = await foundry.applications.handlebars.renderTemplate(templatePath, { ...data, serial });
 
   // Create container and insert into DOM
   const wrapper = document.createElement("div");
@@ -70,13 +77,16 @@ export async function renderNotification(data, onDismiss) {
   const line = el.querySelector(".insight-fracture-line");
   const card = el.querySelector(".insight-fracture-card");
   const bgBack = el.querySelector(".insight-fracture-bg-back");
+  // Cascade stagger order (§6.2) — each element lights as the sheen crosses it.
   const contentEls = [
     el.querySelector(".insight-icon"),
     el.querySelector(".insight-sense"),
+    el.querySelector(".insight-serial"),
     el.querySelector(".insight-title"),
     el.querySelector(".insight-divider"),
     el.querySelector(".insight-image"),
     el.querySelector(".insight-body"),
+    el.querySelector(".insight-datastrip"),
     el.querySelector(".insight-dismiss"),
   ].filter(Boolean);
 
