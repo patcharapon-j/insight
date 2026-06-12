@@ -1,5 +1,19 @@
 # Changelog
 
+## 1.3.0 (2026-06-12)
+
+### Changed
+- **Streamlined the compose dialog for play.** The GM now just picks a recipient and types a single message — the separate sense, title, and image fields are gone. The message field autofocuses, the last recipient stays selected for rapid follow-ups, and **Ctrl/Cmd+Enter** sends. (The notification renderer still supports titles, sense labels, and images for programmatic sends.)
+
+### Design
+- Adopted the GL Universe **"Etched Glass"** design language across the whole module — liquid glass material with an Endfield-style drafting layer.
+- **Notification card** rebuilt as a chamfered glass panel: frosted `backdrop-filter` blur with inner light catch and bloom, a 1px accent rim tracing the cut corner, an L-bracket registration mark, crop marks, a `GLU·INSIGHT // ####` serial, a triangle bullet, and a barcode data strip.
+- **Reveal** now follows the reveal contract: a precision rule of light draws in, a sheen sweeps across the panel, and content lights in a diagonal cascade stagger.
+- **Compose dialog** restyled as a glass window with notched inset wells, technical micro-labels, a tick-marked kicker, and a signal-amber Send button that flashes on commit.
+- **Themes** reduced to the single dynamic accent channel (`--gl-accent`): Dreadlight → mystery violet, Fantasy → signal amber. The material, etching, and Oxanium/mono typography are now shared.
+- **Motion** built on the shared easing/duration tokens, with the animation-speed setting mapped to motion tiers and a full `prefers-reduced-motion` clamp (loops disabled, ceremonies become straight fades).
+- Added `mockups/etched-glass.html`, a self-contained visual specimen that links the live stylesheet.
+
 ## 1.2.0 (2026-05-28)
 
 ### Features

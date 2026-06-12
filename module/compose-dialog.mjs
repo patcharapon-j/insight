@@ -17,7 +17,6 @@ export class InsightComposeDialog extends HandlebarsApplicationMixin(Application
     },
     actions: {
       send: InsightComposeDialog.#onSend,
-      "browse-image": InsightComposeDialog.#onBrowseImage,
     },
   };
 
@@ -39,65 +38,68 @@ export class InsightComposeDialog extends HandlebarsApplicationMixin(Application
         id: u.id,
         name: u.isGM ? `${u.name}${gmSuffix}` : u.name,
         isGM: u.isGM,
+        selected: u.id === this._lastTarget,
       }))
       .sort((a, b) => {
         if (a.isGM !== b.isGM) return a.isGM ? 1 : -1;
         return a.name.localeCompare(b.name);
       });
 
-    // Preserve form values between re-renders
-    context.sense = this._lastSense ?? "";
-    context.title = this._lastTitle ?? "";
-    context.body = this._lastBody ?? "";
-    context.image = this._lastImage ?? "";
+    context.message = "";
     return context;
   }
 
+  /** @override — autofocus the message field and bind Ctrl/Cmd+Enter to send. */
+  _onRender(context, options) {
+    super._onRender?.(context, options);
+    const message = this.element.querySelector('[name="message"]');
+    message?.focus();
+    message?.addEventListener("keydown", (event) => {
+      if (event.key === "Enter" && (event.ctrlKey || event.metaKey)) {
+        event.preventDefault();
+        const btn = this.element.querySelector(".insight-send-btn");
+        InsightComposeDialog.#onSend.call(this, event, btn);
+      }
+    });
+  }
+
   /**
-   * Handle Send button click.
-   * @param {PointerEvent} event
+   * Handle Send button click (or Ctrl/Cmd+Enter).
+   * @param {PointerEvent|KeyboardEvent} event
    * @param {HTMLElement} target
    */
   static #onSend(event, target) {
     const form = this.element.querySelector("form");
     const formData = new FormData(form);
 
-    const title = formData.get("title")?.trim();
-    const body = formData.get("body")?.trim();
+    const message = formData.get("message")?.trim();
     const targetUser = formData.get("target");
 
-    if (!title || !body || !targetUser) {
-      ui.notifications.warn("Please fill in the target, title, and body fields.");
+    if (!message || !targetUser) {
+      ui.notifications.warn("Please choose a recipient and type a message.");
       return;
     }
 
+    // Remember the recipient so the next quick send is one keystroke away.
+    this._lastTarget = targetUser;
+
     sendNotification({
       target: targetUser,
-      title: title,
-      body: body,
-      sense: formData.get("sense")?.trim() || null,
-      image: formData.get("image")?.trim() || null,
+      title: null,
+      body: message,
+      sense: null,
+      image: null,
     });
 
-    this.close();
-  }
-
-  /**
-   * Handle image file picker.
-   * @param {PointerEvent} event
-   * @param {HTMLElement} target
-   */
-  static async #onBrowseImage(event, target) {
-    const FilePickerImpl = foundry.applications.apps.FilePicker.implementation
-      ?? foundry.applications.apps.FilePicker;
-    const fp = new FilePickerImpl({
-      type: "image",
-      callback: (path) => {
-        const input = this.element.querySelector('[name="image"]');
-        input.value = path;
-      },
-    });
-    fp.browse();
+    // Signal flash on commit (§6.2), then close once the sweep has read.
+    const reduced = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+    if (target && !reduced) {
+      target.classList.add("insight-sent");
+      target.textContent = game.i18n.localize("INSIGHT.ComposeSent");
+      setTimeout(() => this.close(), 420);
+    } else {
+      this.close();
+    }
   }
 
 }
