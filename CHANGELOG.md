@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+### Fixed
+- **GM scene-control button now opens the compose dialog reliably.** Clicking the Insight eye in the token controls could do nothing because Foundry's `button` tool only fires `onChange` when the active tool *changes* — once the button stuck as the active tool, repeat clicks were silently ignored. The click is now bound directly on the rendered button so the dialog opens every time, and the open instance is reused so windows never stack.
+
 ## 1.3.0 (2026-06-12)
 
 ### Changed
